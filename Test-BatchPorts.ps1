@@ -8,6 +8,6 @@ foreach ($server in $servers) {
     foreach ($port in $ports) {
         $outsrv | Add-Member -NotePropertyName $port -NotePropertyValue (Test-NetConnection -ComputerName $server -Port $port).TcpTestSucceeded
     }
-    $out += $outsrv; rv outsrv
+    $out += $outsrv; Remove-Variable outsrv
 }
-$out; rv out
+$out; Remove-Variable out
