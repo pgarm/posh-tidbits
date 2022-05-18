@@ -57,8 +57,8 @@ foreach ($User in $AllUsers) {
         @{l="OfficePhone";e={$_.PhoneNumber -replace '[ \-\(\)]',''}}
 
     $UsersOut += $UserOut
-    Remove-Variable UserOut, UserLogs -ErrorAction SilentlyContinue
+    Remove-Variable UserOut -ErrorAction SilentlyContinue
 }
-$UsersOut | Sort-Object -Property RolloutGroup,SignInName | Export-Csv -Path "$PSScriptRoot\MFA Report.csv" -NoTypeInformation -Encoding UTF8
+$UsersOut | Sort-Object -Property SignInName | Export-Csv -Path "$PSScriptRoot\MFA Report.csv" -NoTypeInformation -Encoding UTF8
 
 Write-Progress -id 1 -Activity "Collected user data" -Complete -Status ("Completed parsing in {0:hh\:mm\:ss}" -f $TimeElapsed)
